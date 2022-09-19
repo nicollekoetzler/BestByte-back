@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 
 let db;
-const mongoClient = new MongoClient('mongodb://localhost:27017');
+const mongoClient = new MongoClient(process.env.MONGODB_URL)
 
 try {
     mongoClient.connect();
