@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import mongo from '../db/db.js';
+import mongo from '../config/db.js';
 import { v4 as uuid }from 'uuid';
 import { STATUS_CODE } from '../enums/statusCode.js';
 import { COLLECTIONS } from '../enums/collections.js';
