@@ -14,9 +14,21 @@ export async function listarProdutos(req, res){
 }
 
 export async function enviarCarrinho(req, res){
+
+    const { authorization } = req.headers;
+    const token = authorization?.replace("Bearer ", "");
+
     const carrinho = req.body
+    
     try {
+        const validToken = await db.collection('sessions').findOne({
+            token: token
+        }) 
+        if(!validToken){
+            return res.sendStatus(401)
+        }
         await db.collection('cart').insertOne({
+            userId: validToken.userId,
             price: carrinho.price,
             name: carrinho.name,
             image: carrinho.image
